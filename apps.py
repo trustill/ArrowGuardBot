@@ -64,8 +64,8 @@ async def payment_webhook(request: Request):
     return {"ok": True}
 
 @app.post("/tg-webhook")
-async def tg_webhook(request: Request):
-    data = await request.json()
+def tg_webhook(request: Request):
+    data = request.json()
 
     print("Webhook worked!")
     print(data)
