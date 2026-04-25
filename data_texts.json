@@ -1,0 +1,28 @@
+{
+  "russian": {
+    "messages": {
+      "welcome_msg": "Привет, {username}! ✨\n\nЯ Arrow Guard — твой персональный защитник в сети. Пока ты отдыхаешь или занимаешься делами, я слежу, чтобы твой интернет всегда был быстрым и доступным. Пользуйся Youtube, Telegram, Instagram и прочими сервисами без ограничений.\n\nЛовлю связь везде, даже на парковке!",
+      "account_menu": "Личный кабинет:\nID: {user_id}\nСтатус: {status}\nПодписка активна до: {sub_end}\nАктивных ключей: {active_keys}\n\nЯ всегда здесь. Если что-то нужно — жми кнопки ниже.",
+      "accept_tou_menu": "8 правил Бойцовского клуба:\nПервое правило: Не упоминать о бойцовском клубе.\nВторое правило: Нигде не упоминать о бойцовском клубе.\nТретье правило: Если противник крикнул «стоп», выдохся или отключился — бой окончен.\nЧетвертое правило: В бою участвуют лишь двое.\nПятое правило: В один вечер — только один поединок.\nШестое правило: Снимать обувь и рубашку.\nСедьмое правило: Бой продолжается столько, сколько потребуется.\nВосьмое правило: Тот, кто впервые пришел в клуб, примет бой."
+    },
+    "buttons": {
+      "buy_vpn": "Попробовать бесплатно \uD83C\uDF81",
+      "subscribe": "Оформить подписку \uD83D\uDC8E",
+      "account": "Личный кабинет \uD83D\uDC64",
+      "accept_tou": "Принять правила пользования ✅"
+    }
+  },
+  "english": {
+    "messages": {
+      "welcome_msg": "Hi, {username}! ✨\n\nI’m Arrow Guard—your personal online guardian. While you’re relaxing or going about your day, I make sure your internet connection is always fast and reliable. Enjoy YouTube, Telegram, Instagram, and other services without any restrictions.\n\nI’ll keep you connected everywhere—even in the bunker!",
+      "account_menu": "Account:\nID: {user_id}\nStatus: {status}\nSubscription valid until: {sub_end}\nActive keys: {active_keys}\n\nI'm always here. If you need anything, click the buttons below.",
+      "accept_tou_menu": "8 rules of Fight Club:\nFirst rule: You do not talk about FIGHT CLUB\nSecond rule: You DO NOT talk about FIGHT CLUB\nThird rule: If someone says “stop” or goes limp, taps out, the fight is over\nFourth rule: Only two guys to a fight\nFifth rule: One fight at a time, fellas\nSixth rule: No shirts, no shoes\nSeventh rule: Fights will go on as long as they have to\nEighth rule: If this is your first night at FIGHT CLUB, you HAVE to fight"
+    },
+    "buttons": {
+      "buy_vpn": "Try for free \uD83C\uDF81",
+      "subscribe": "Subscribe \uD83D\uDC8E",
+      "account": "My Account \uD83D\uDC64",
+      "accept_tou": "Accept terms of use"
+    }
+  }
+}
