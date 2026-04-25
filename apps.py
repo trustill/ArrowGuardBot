@@ -66,6 +66,10 @@ async def payment_webhook(request: Request):
 @app.post("/tg-webhook")
 async def tg_webhook(request: Request):
     data = await request.json()
+
+    print("Webhook worked!")
+    print(data)
+
     update = telebot.types.Update.de_json(data)
     bot.process_new_updates([update])
     return {"ok": True}
