@@ -27,13 +27,19 @@ def accept_tou_menu(msg, lang):
 
 def welcome_message(msg, firstname=None):
     lang = db_client.get_user_lang(msg.chat.id)
+    print(lang)
     username = firstname or "Anonymous"
+    print(username)
     kb = keyboards.start_kb(lang)
+    print(kb)
 
     tou_is_accept = db_client.is_accept_tou(msg.chat.id)
+    print(tou_is_accept)
 
     if tou_is_accept:
         result_text = msg_data[lang]["messages"]["welcome_msg"].format(username=username)
+        print(result_text)
+        print(images_url["welcome_image"])
 
         send_photo_(msg.chat.id, images_url["welcome_image"], result_text, kb)
     else:
@@ -52,7 +58,9 @@ def send_photo_(chat_id, photo_url=images_url["except_image"], text="Empty", kb=
 def start_conversation(msg):
     bot.send_message(msg.chat.id, "TEST")
     kb_choose_lang = keyboards.choose_language_kb()
+    print(kb_choose_lang)
     client = db_client.get_user(msg.chat.id)
+    print(client)
 
     if client:
         welcome_message(msg, msg.from_user.first_name)
