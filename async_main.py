@@ -107,6 +107,3 @@ async def user_accepted_tou(query):
     db_client.change_tou_status(True, query.message.chat.id)
 
     await welcome_message(query.message, query.from_user.first_name)
-
-if __name__ == "__main__":
-    asyncio.run(bot.polling())

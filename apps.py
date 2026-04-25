@@ -1,9 +1,9 @@
 from fastapi.responses import HTMLResponse
 from fastapi import FastAPI, Request
-import telebot
-import config
+from async_main import bot
 
-bot = telebot.TeleBot(config.token)
+import telebot
+
 app = FastAPI()
 
 @app.get("/pay")
@@ -28,7 +28,7 @@ async def pay_page(user_id: int):
 
         <script>
         function pay(success) {{
-            fetch("https://catchhooks.com/XXXXXX", {{
+            fetch("https://catchhooks.com/api/w/EEb9fdTvtX", {{
                 method: "POST",
                 headers: {{
                     "Content-Type": "application/json"
