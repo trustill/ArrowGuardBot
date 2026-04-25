@@ -59,7 +59,9 @@ def start_conversation(msg):
     bot.send_message(msg.chat.id, "TEST")
     kb_choose_lang = keyboards.choose_language_kb()
     print(kb_choose_lang)
+    bot.send_message(msg.chat.id, "TEST")
     client = db_client.get_user(msg.chat.id)
+    bot.send_message(msg.chat.id, "TEST")
     print(client)
 
     if client:
