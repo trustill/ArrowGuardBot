@@ -3,3 +3,4 @@ uvicorn
 pyTelegramBotAPI
 asyncio
 psycopg2
+aiohttp
