@@ -6,11 +6,11 @@ import json
 import db_actions
 
 from telebot import types, logging
-from telebot.async_telebot import AsyncTeleBot
+from telebot import TeleBot
 
-telebot.async_telebot.logger.setLevel(logging.INFO)
+telebot.telebot.logger.setLevel(logging.INFO)
 
-bot = AsyncTeleBot(config.token)
+bot = TeleBot(config.token)
 db_client = db_actions.SqlQuery(config.conn_str)
 
 with open("data_texts.json", encoding="utf-8") as file:
@@ -18,14 +18,14 @@ with open("data_texts.json", encoding="utf-8") as file:
 with open("photos_url.json", encoding="utf-8") as file:
     images_url = json.load(file)
 
-async def accept_tou_menu(msg, lang):
+def accept_tou_menu(msg, lang):
     kb = keyboards.accept_tou_kb(lang)
 
-    await bot.send_message(chat_id=msg.chat.id,
+    bot.send_message(chat_id=msg.chat.id,
                            text=msg_data[lang]["messages"]["accept_tou_menu"],
                            reply_markup=kb)
 
-async def welcome_message(msg, firstname=None):
+def welcome_message(msg, firstname=None):
     lang = db_client.get_user_lang(msg.chat.id)
     username = firstname or "Anonymous"
     kb = keyboards.start_kb(lang)
@@ -35,13 +35,13 @@ async def welcome_message(msg, firstname=None):
     if tou_is_accept:
         result_text = msg_data[lang]["messages"]["welcome_msg"].format(username=username)
 
-        await send_photo_(msg.chat.id, images_url["welcome_image"], result_text, kb)
+        send_photo_(msg.chat.id, images_url["welcome_image"], result_text, kb)
     else:
-        await accept_tou_menu(msg, lang)
+        accept_tou_menu(msg, lang)
 
-async def send_photo_(chat_id, photo_url=images_url["except_image"], text="Empty", kb=None):
+def send_photo_(chat_id, photo_url=images_url["except_image"], text="Empty", kb=None):
     if chat_id != None:
-        await bot.send_photo(chat_id=chat_id,
+        bot.send_photo(chat_id=chat_id,
                              photo=photo_url,
                              caption=text,
                              reply_markup=kb)
@@ -49,61 +49,61 @@ async def send_photo_(chat_id, photo_url=images_url["except_image"], text="Empty
         print("Chat ID is empty")
 
 @bot.message_handler(commands=["start"])
-async def start_conversation(msg):
+def start_conversation(msg):
     kb_choose_lang = keyboards.choose_language_kb()
     client = db_client.get_user(msg.chat.id)
 
     if client:
-        await welcome_message(msg, msg.from_user.first_name)
+        welcome_message(msg, msg.from_user.first_name)
     else:
         db_client.add_new_user(msg.chat.id)
 
-        await bot.send_message(chat_id=msg.chat.id,
+        bot.send_message(chat_id=msg.chat.id,
                                text="Выберите язык:",
                                reply_markup=kb_choose_lang)
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('change_lang_to_ru'))
-async def change_lang_ru(query):
+def change_lang_ru(query):
     user_id = query.message.chat.id
     lang = db_client.get_user_lang(user_id)
 
-    await bot.delete_message(chat_id=user_id,
+    bot.delete_message(chat_id=user_id,
                              message_id=query.message.id)
 
     if lang == None:
         db_client.change_user_lang(user_id, "russian")
-        await welcome_message(query.message, query.from_user.first_name)
+        welcome_message(query.message, query.from_user.first_name)
     else:
         db_client.change_user_lang(user_id, "russian")
 
-        await bot.send_message(chat_id=user_id,
+        bot.send_message(chat_id=user_id,
                                text="Ваш язык успешно изменен на русский!")
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('change_lang_to_eng'))
-async def change_lang_eng(query):
+def change_lang_eng(query):
     user_id = query.message.chat.id
     lang = db_client.get_user_lang(user_id)
 
-    await bot.delete_message(chat_id=user_id,
+    bot.delete_message(chat_id=user_id,
                              message_id=query.message.id)
 
     if lang == None:
         db_client.change_user_lang(user_id, "english")
-        await welcome_message(query.message, query.from_user.first_name)
+        welcome_message(query.message, query.from_user.first_name)
     else:
         db_client.change_user_lang(user_id, "english")
 
-        await bot.send_message(chat_id=user_id,
+        bot.send_message(chat_id=user_id,
                                text="Your language has been successfully changed to English!")
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('account'))
-async def account_menu(query):
+def account_menu(query):
     user_id = query.message.chat.id
     lang = db_client.get_user_lang(user_id)
 
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('accept_tou'))
-async def user_accepted_tou(query):
+def user_accepted_tou(query):
     db_client.change_tou_status(True, query.message.chat.id)
 
-    await welcome_message(query.message, query.from_user.first_name)
+    welcome_message(query.message, query.from_user.first_name)
