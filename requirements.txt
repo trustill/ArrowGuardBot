@@ -1,3 +1,5 @@
 fastapi
 uvicorn
 pyTelegramBotAPI
+asyncio
+psycopg2
