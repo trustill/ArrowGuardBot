@@ -69,6 +69,7 @@ async def tg_webhook(request: Request):
 
     print("Webhook worked!")
     print(data)
+    print(bot.message_handlers)
 
     update = telebot.types.Update.de_json(data)
     bot.process_new_updates([update])
