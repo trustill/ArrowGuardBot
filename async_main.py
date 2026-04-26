@@ -130,7 +130,10 @@ def subscribe(query):
                        message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
+    print(lang)
     kb = keyboards.get_plans(lang)
+    print(kb)
+    print(msg_data[lang]["messages"]["choose_plan"])
 
     bot.send_message(chat_id=user_id,
                      text=msg_data[lang]["messages"]["choose_plan"],
