@@ -52,11 +52,8 @@ def send_photo_(chat_id, photo_url=images_url["except_image"], text="Empty", kb=
 def start_conversation(msg):
     kb_choose_lang = keyboards.choose_language_kb()
 
-    try:
-        lang = db_client.get_user_lang(msg.chat.id)
-        client = db_client.get_user(msg.chat.id)
-    except Exception as e:
-        print("DB-Error: ", e)
+    lang = db_client.get_user_lang(msg.chat.id)
+    client = db_client.get_user(msg.chat.id)
 
     if client and lang != None:
         welcome_message(msg, msg.from_user.first_name)
