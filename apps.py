@@ -69,10 +69,7 @@ async def tg_webhook(request: Request):
 
     print("Webhook worked!")
 
-    # update = telebot.types.Update.de_json(data)
-    # bot.process_new_updates([update])
-    if 'message' in data:
-        message = telebot.types.Message.de_json(data['message'])
-        bot.process_new_messages([message])
+    update = telebot.types.Update.de_json(data)
+    bot.process_new_updates([update])
 
     return {"ok": True}

@@ -50,6 +50,7 @@ def send_photo_(chat_id, photo_url=images_url["except_image"], text="Empty", kb=
 
 @bot.message_handler(commands=["start"])
 def start_conversation(msg):
+    bot.send_message(chat_id=msg.chat.id, text="TEST")
     kb_choose_lang = keyboards.choose_language_kb()
     try:
         client = db_client.get_user(msg.chat.id)
