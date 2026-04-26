@@ -101,7 +101,22 @@ def change_lang_eng(query):
 @bot.callback_query_handler(func=lambda x: x.data.startswith('account'))
 def account_menu(query):
     user_id = query.message.chat.id
+    bot.delete_message(chat_id=user_id,
+                       message_id=query.message.id)
+
     lang = db_client.get_user_lang(user_id)
+    kb = keyboards.account_kb(lang)
+
+    user_status = "Не активен" if db_client.get_user_status(user_id) == 0 else "Активен"
+    sub_end_date = db_client.get_end_sub(user_id)
+
+    result_text = msg_data[lang]["messages"]["account_menu"].format(user_id=user_id,
+                                                                    status=user_status,
+                                                                    sub_end=sub_end_date)
+
+    bot.send_message(chat_id=user_id,
+                     text=result_text,
+                     reply_markup=kb)
 
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('accept_tou'))

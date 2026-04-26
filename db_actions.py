@@ -82,3 +82,19 @@ class SqlQuery:
         query = "update users_data set user_lang = %s where user_id = %s"
 
         self.execute_query(query, lang, user_id)
+
+    def get_user_status(self, user_id):
+        with psycopg2.connect(self.conn_str) as conn:
+            with conn.cursor() as cursor:
+                cursor.execute('select user_status from users_data where user_id = %s',
+                               [user_id, ])
+
+                return cursor.fetchone()[0]
+
+    def get_end_sub(self, user_id):
+        with psycopg2.connect(self.conn_str) as conn:
+            with conn.cursor() as cursor:
+                cursor.execute('select end_sub from users_data where user_id = %s',
+                               [user_id, ])
+
+                return cursor.fetchone()[0]

@@ -12,7 +12,7 @@ def choose_language_kb():
 
 def start_kb(lang):
     return types.InlineKeyboardMarkup(row_width=1).add(
-        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["buy_vpn"], callback_data="buy_vpn"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["try_free"], callback_data="try_free"),
         types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["subscribe"], callback_data="subscribe"),
         types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["account"], callback_data="account")
     )
@@ -20,3 +20,11 @@ def start_kb(lang):
 def accept_tou_kb(lang):
     return types.InlineKeyboardMarkup().add(
         types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["accept_tou"], callback_data="accept_tou"))
+
+def account_kb(lang):
+    return types.InlineKeyboardMarkup(row_width=1).add(
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["try_free"], callback_data="try_free"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["subscribe"], callback_data="subscribe"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["my_key"], callback_data="my_key"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["support"], callback_data="support"),
+    )
