@@ -103,6 +103,7 @@ def account_menu(query):
                        message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
+    print(lang)
     kb = keyboards.account_kb(lang)
 
     user_status = "Не активен" if db_client.get_user_status(user_id) == 0 else "Активен"
@@ -129,6 +130,7 @@ def subscribe(query):
     bot.delete_message(chat_id=user_id,
                        message_id=query.message.id)
 
+    print(user_id)
     lang = db_client.get_user_lang(user_id)
     print(lang)
     kb = keyboards.get_plans(lang)
