@@ -3,7 +3,9 @@
     "messages": {
       "welcome_msg": "Привет, {username}! ✨\n\nЯ Arrow Guard — твой персональный защитник в сети. Пока ты отдыхаешь или занимаешься делами, я слежу, чтобы твой интернет всегда был быстрым и доступным. Пользуйся Youtube, Telegram, Instagram и прочими сервисами без ограничений.\n\nЛовлю связь везде, даже на парковке!",
       "account_menu": "Личный кабинет:\nID: {user_id}\nСтатус: {status}\nПодписка активна до: {sub_end}\n\nЯ всегда здесь. Если что-то нужно — жми кнопки ниже.",
-      "accept_tou_menu": "8 правил Бойцовского клуба:\nПервое правило: Не упоминать о бойцовском клубе.\nВторое правило: Нигде не упоминать о бойцовском клубе.\nТретье правило: Если противник крикнул «стоп», выдохся или отключился — бой окончен.\nЧетвертое правило: В бою участвуют лишь двое.\nПятое правило: В один вечер — только один поединок.\nШестое правило: Снимать обувь и рубашку.\nСедьмое правило: Бой продолжается столько, сколько потребуется.\nВосьмое правило: Тот, кто впервые пришел в клуб, примет бой."
+      "accept_tou_menu": "8 правил Бойцовского клуба:\nПервое правило: Не упоминать о бойцовском клубе.\nВторое правило: Нигде не упоминать о бойцовском клубе.\nТретье правило: Если противник крикнул «стоп», выдохся или отключился — бой окончен.\nЧетвертое правило: В бою участвуют лишь двое.\nПятое правило: В один вечер — только один поединок.\nШестое правило: Снимать обувь и рубашку.\nСедьмое правило: Бой продолжается столько, сколько потребуется.\nВосьмое правило: Тот, кто впервые пришел в клуб, примет бой.",
+      "choose_plan": "Выберите подходящий тариф:",
+      "order_made": "Отлично, ваш заказ создан! Вот ваша ссылка для оплаты: <a href=\"https://arrowguardbot.onrender.com/pay?user_id={user_id}\">ссылка активна 15 минут</a>"
     },
     "buttons": {
       "try_free": "Попробовать бесплатно \uD83C\uDF81",
@@ -12,14 +14,19 @@
       "accept_tou": "Принять правила пользования ✅",
       "my_key": "Мой ключ \uD83D\uDD11",
       "support": "Поддержка \uD83D\uDEE1\uFE0F",
-      "back": "Назад \uD83D\uDD19"
+      "back": "Назад \uD83D\uDD19",
+      "one_month": "1 месяц - 179₽",
+      "three_moth": "3 месяца - 299₽",
+      "one_year": "1 год - 899₽"
     }
   },
   "english": {
     "messages": {
       "welcome_msg": "Hi, {username}! ✨\n\nI’m Arrow Guard — your personal online guardian. While you’re relaxing or going about your day, I make sure your internet connection is always fast and reliable. Enjoy YouTube, Telegram, Instagram, and other services without any restrictions.\n\nI’ll keep you connected everywhere — even in the bunker!",
       "account_menu": "Account:\nID: {user_id}\nStatus: {status}\nSubscription valid until: {sub_end}\nActive keys: {active_keys}\n\nI'm always here. If you need anything, click the buttons below.",
-      "accept_tou_menu": "8 rules of Fight Club:\nFirst rule: You do not talk about FIGHT CLUB\nSecond rule: You DO NOT talk about FIGHT CLUB\nThird rule: If someone says “stop” or goes limp, taps out, the fight is over\nFourth rule: Only two guys to a fight\nFifth rule: One fight at a time, fellas\nSixth rule: No shirts, no shoes\nSeventh rule: Fights will go on as long as they have to\nEighth rule: If this is your first night at FIGHT CLUB, you HAVE to fight"
+      "accept_tou_menu": "8 rules of Fight Club:\nFirst rule: You do not talk about FIGHT CLUB\nSecond rule: You DO NOT talk about FIGHT CLUB\nThird rule: If someone says “stop” or goes limp, taps out, the fight is over\nFourth rule: Only two guys to a fight\nFifth rule: One fight at a time, fellas\nSixth rule: No shirts, no shoes\nSeventh rule: Fights will go on as long as they have to\nEighth rule: If this is your first night at FIGHT CLUB, you HAVE to fight",
+      "choose_plan": "Choose your plan:",
+      "order_made": "Great, your order has been placed! Here is your payment link: <a href=\"https://arrowguardbot.onrender.com/pay?user_id={user_id}\">link valid for 15 minutes</a>"
     },
     "buttons": {
       "try_free": "Try for free \uD83C\uDF81",
@@ -28,7 +35,10 @@
       "accept_tou": "Accept terms of use",
       "my_key": "My key \uD83D\uDD11",
       "support": "Support \uD83D\uDEE1\uFE0F",
-      "back": "Go back"
+      "back": "Go back",
+      "one_month": "1 month - 179₽",
+      "three_moth": "3 month - 299₽",
+      "one_year": "1 year - 899₽"
     }
   }
 }

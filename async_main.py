@@ -106,7 +106,7 @@ def account_menu(query):
     kb = keyboards.account_kb(lang)
 
     user_status = "Не активен" if db_client.get_user_status(user_id) == 0 else "Активен"
-    sub_end_date = db_client.get_end_sub(user_id)
+    sub_end_date = db_client.get_end_sub(user_id) or "Не активно"
 
     result_text = msg_data[lang]["messages"]["account_menu"].format(user_id=user_id,
                                                                     status=user_status,
@@ -122,3 +122,39 @@ def user_accepted_tou(query):
     db_client.change_tou_status(True, query.message.chat.id)
 
     welcome_message(query.message, query.from_user.first_name)
+
+@bot.callback_query_handler(func=lambda x: x.data.startswith('subscribe'))
+def subscribe(query):
+    user_id = query.message.chat.id
+    bot.delete_message(chat_id=user_id,
+                       message_id=query.message.id)
+
+    lang = db_client.get_user_lang(user_id)
+    kb = keyboards.get_plans(lang)
+
+    bot.send_message(chat_id=user_id,
+                     text=msg_data[lang]["messages"]["choose_plan"],
+                     reply_markup=kb)
+
+@bot.callback_query_handler(func=lambda x: x.data.startswith('sub:'))
+def preparing_plan(query):
+    user_id = query.message.chat.id
+    bot.delete_message(chat_id=user_id,
+                       message_id=query.message.id)
+
+    lang = db_client.get_user_lang(user_id)
+
+    bot.send_message(chat_id=user_id,
+                     text=msg_data[lang]["messages"]["order_made"].format(user_id=user_id))
+
+@bot.callback_query_handler(func=lambda x: x.data.startswith('back'))
+def go_back(query):
+    user_id = query.message.chat.id
+
+    lang = db_client.get_user_lang(user_id)
+    kb = keyboards.account_kb(lang)
+
+    bot.edit_message_text(chat_id=user_id,
+                          message_id=query.message.id,
+                          text=query.message.text,
+                          reply_markup=kb)

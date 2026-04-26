@@ -28,3 +28,10 @@ def account_kb(lang):
         types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["my_key"], callback_data="my_key"),
         types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["support"], callback_data="support"),
     )
+def get_plans(lang):
+    return types.InlineKeyboardMarkup(row_width=1).add(
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["one_month"], callback_data="sub:1month"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["three_month"], callback_data="sub:3month"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["one_year"], callback_data="sub:1year"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["back"], callback_data="back")
+    )
