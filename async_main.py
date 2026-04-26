@@ -54,8 +54,15 @@ def start_conversation(msg):
     kb_choose_lang = keyboards.choose_language_kb()
     bot.send_message(chat_id=msg.chat.id, text="TEST")
 
-    lang = db_client.get_user_lang(msg.chat.id)
-    client = db_client.get_user(msg.chat.id)
+    try:
+        lang = db_client.get_user_lang(msg.chat.id)
+    except Exception as e:
+        print("DB-lang error: ", e)
+
+    try:
+        client = db_client.get_user(msg.chat.id)
+    except Exception as e:
+        print("DB-client error: ", e)
 
     if client and lang != None:
         welcome_message(msg, msg.from_user.first_name)
