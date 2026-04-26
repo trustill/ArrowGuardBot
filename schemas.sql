@@ -1,5 +1,5 @@
 -- Создаем основную схему
-CREATE TABLE users.users_data(
+CREATE TABLE users_data(
     user_id BIGINT,
     -- Язык в боте для юзера
     user_lang TEXT,
