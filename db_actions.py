@@ -52,7 +52,8 @@ class SqlQuery:
     def add_new_user(self, user_id):
         query = ("insert into users_data"
                  "(user_id, user_lang, user_status, is_trial, accept_tou, end_sub) "
-                 "values (%s, %s, %s, %s, %s, %s)")
+                 "values (%s, %s, %s, %s, %s, %s)"
+                 "on conflict (user_id) do nothing")
 
         self.execute_query(query, user_id, None, 0, False, False, None)
         return True
