@@ -8,6 +8,8 @@ import db_actions
 from telebot import types, logging
 from telebot import TeleBot
 
+logging.basicConfig(level=logging.INFO)
+
 telebot.telebot.logger.setLevel(logging.INFO)
 
 bot = TeleBot(config.token)
@@ -55,7 +57,7 @@ def start_conversation(msg):
     try:
         client = db_client.get_user(msg.chat.id)
     except Exception as e:
-        print(e)
+        logging.error(e)
 
     if client:
         welcome_message(msg, msg.from_user.first_name)
