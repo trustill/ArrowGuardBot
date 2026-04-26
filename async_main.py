@@ -126,26 +126,16 @@ def user_accepted_tou(query):
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('subscribe'))
 def subscribe_on_service(query):
-    try:
-        user_id = query.message.chat.id
-        bot.delete_message(chat_id=user_id,
-                           message_id=query.message.id)
+    user_id = query.message.chat.id
+    bot.delete_message(chat_id=user_id,
+                       message_id=query.message.id)
 
-        lang = db_client.get_user_lang(user_id)
-        kb = keyboards.get_plans(lang)
-    except Exception as e:
-        user_id = None
-        lang = None
-        kb = None
-        logging.error(e)
-        print(e)
-    try:
-        bot.send_message(chat_id=user_id,
-                         text=msg_data[lang]["messages"]["choose_plan"],
-                         reply_markup=kb)
-    except Exception as e:
-        logging.error(e)
-        print(e)
+    lang = db_client.get_user_lang(user_id)
+    kb = keyboards.get_plans(lang)
+
+    bot.send_message(chat_id=user_id,
+                     text=msg_data[lang]["messages"]["choose_plan"],
+                     reply_markup=kb)
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('sub:'))
 def preparing_plan(query):
