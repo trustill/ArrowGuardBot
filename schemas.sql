@@ -1,6 +1,6 @@
 -- Создаем основную схему
 CREATE TABLE users_data(
-    user_id BIGINT,
+    user_id BIGINT PRIMARY KEY,
     -- Язык в боте для юзера
     user_lang TEXT,
     -- Статус юзера: 0 - неактивный юзер, 1 - пользуется услугами
