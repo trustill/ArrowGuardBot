@@ -51,13 +51,11 @@ def send_photo_(chat_id, photo_url=images_url["except_image"], text="Empty", kb=
 @bot.message_handler(commands=["start"])
 def start_conversation(msg):
     kb_choose_lang = keyboards.choose_language_kb()
-    try:
-        client = db_client.get_user(msg.chat.id)
-        print("CLIENT:", client)
-    except Exception as e:
-        print("DB ERROR:", e)
 
-    if client:
+    lang = db_client.get_user_lang(msg.chat.id)
+    client = db_client.get_user(msg.chat.id)
+
+    if client and lang != None:
         welcome_message(msg, msg.from_user.first_name)
     else:
         db_client.add_new_user(msg.chat.id)
