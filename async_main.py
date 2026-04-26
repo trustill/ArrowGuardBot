@@ -8,8 +8,6 @@ import db_actions
 from telebot import types, logging
 from telebot import TeleBot
 
-logging.basicConfig(level=logging.INFO)
-
 telebot.telebot.logger.setLevel(logging.INFO)
 
 bot = TeleBot(config.token)
@@ -52,34 +50,17 @@ def send_photo_(chat_id, photo_url=images_url["except_image"], text="Empty", kb=
 
 @bot.message_handler(commands=["start"])
 def start_conversation(msg):
-    bot.send_message(chat_id=msg.chat.id, text="TEST")
-
     kb_choose_lang = keyboards.choose_language_kb()
-
-    try:
-        client = db_client.get_user(msg.chat.id)
-        logging.info(f"CLIENT: {client}")
-    except Exception:
-        logging.exception("ERROR IN get_user")
-        client = None
+    client = db_client.get_user(msg.chat.id)
 
     if client:
-        logging.info("USER EXISTS")
         welcome_message(msg, msg.from_user.first_name)
     else:
-        logging.info("NEW USER, ADDING...")
+        db_client.add_new_user(msg.chat.id)
 
-        try:
-            db_client.add_new_user(msg.chat.id)
-            logging.info("USER ADDED")
-        except Exception:
-            logging.exception("ERROR IN add_new_user")
-
-        bot.send_message(
-            chat_id=msg.chat.id,
-            text="Выберите язык:",
-            reply_markup=kb_choose_lang
-        )
+        bot.send_message(chat_id=msg.chat.id,
+                               text="Выберите язык:",
+                               reply_markup=kb_choose_lang)
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('change_lang_to_ru'))
 def change_lang_ru(query):
