@@ -68,8 +68,6 @@ async def tg_webhook(request: Request):
     data = await request.json()
 
     print("Webhook worked!")
-    print(data)
-    print(bot.message_handlers)
 
     if 'message' in data:
         message = telebot.types.Message.de_json(data['message'])

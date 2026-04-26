@@ -68,6 +68,7 @@ def start_conversation(msg):
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('change_lang_to_ru'))
 def change_lang_ru(query):
+    bot.send_message(query.message.chat.id, "TEST")
     user_id = query.message.chat.id
     lang = db_client.get_user_lang(user_id)
 
