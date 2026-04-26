@@ -145,7 +145,8 @@ def preparing_plan(query):
     lang = db_client.get_user_lang(user_id)
 
     bot.send_message(chat_id=user_id,
-                     text=msg_data[lang]["messages"]["order_made"].format(user_id=user_id))
+                     text=msg_data[lang]["messages"]["order_made"].format(user_id=user_id),
+                     parse_mode="html")
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('back'))
 def go_back(query):

@@ -57,7 +57,9 @@ async def payment_webhook(request: Request):
     user_id = data.get("user_id")
 
     if status == "success":
-        bot.send_message(user_id, "✅ Оплата прошла!")
+        bot.send_message(user_id,
+                         "✅ Оплата прошла! <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Нажмите, чтобы получить ключ</a>",
+                         parse_mode="html")
     else:
         bot.send_message(user_id, "❌ Оплата отменена")
 
