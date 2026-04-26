@@ -127,19 +127,22 @@ def user_accepted_tou(query):
 @bot.callback_query_handler(func=lambda x: x.data.startswith('subscribe'))
 def subscribe(query):
     user_id = query.message.chat.id
-    bot.delete_message(chat_id=user_id,
-                       message_id=query.message.id)
+    try:
+        bot.delete_message(chat_id=user_id,
+                           message_id=query.message.id)
 
-    print(user_id)
-    lang = db_client.get_user_lang(user_id)
-    print(lang)
-    kb = keyboards.get_plans(lang)
-    print(kb)
-    print(msg_data[lang]["messages"]["choose_plan"])
-
-    bot.send_message(chat_id=user_id,
-                     text=msg_data[lang]["messages"]["choose_plan"],
-                     reply_markup=kb)
+        lang = db_client.get_user_lang(user_id)
+        kb = keyboards.get_plans(lang)
+    except Exception as e:
+        lang = None
+        kb = None
+        print(e)
+    try:
+        bot.send_message(chat_id=user_id,
+                         text=msg_data[lang]["messages"]["choose_plan"],
+                         reply_markup=kb)
+    except Exception as e:
+        print(e)
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('sub:'))
 def preparing_plan(query):
@@ -149,7 +152,6 @@ def preparing_plan(query):
 
     lang = db_client.get_user_lang(user_id)
     result_text = msg_data[lang]["messages"]["order_made"].format(user_id=user_id)
-    print(result_text)
 
     bot.send_message(chat_id=user_id,
                      text=result_text,
