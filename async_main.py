@@ -124,6 +124,9 @@ def account_menu(query):
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('accept_tou'))
 def user_accepted_tou(query):
+    bot.delete_message(chat_id=query.message.chat.id,
+                       message_id=query.message.id)
+
     db_client.change_tou_status(True, query.message.chat.id)
 
     welcome_message(query.message, query.from_user.first_name)
@@ -148,11 +151,13 @@ def preparing_plan(query):
                        message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
+    kb = keyboards.pay_kb(lang, user_id)
+
     result_text = msg_data[lang]["messages"]["order_made"].format(user_id=user_id)
 
     bot.send_message(chat_id=user_id,
                      text=result_text,
-                     parse_mode="html")
+                     reply_markup=kb)
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('back'))
 def back_to_menu(query):
