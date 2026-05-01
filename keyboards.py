@@ -33,5 +33,15 @@ def get_plans(lang):
         types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["one_month"], callback_data="sub:1month"),
         types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["three_month"], callback_data="sub:3month"),
         types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["one_year"], callback_data="sub:1year"),
-        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["back"], callback_data="back")
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["back"], callback_data="back:menu")
     )
+
+def back_kb(lang):
+    return types.InlineKeyboardMarkup().add(
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["back"], callback_data="back:menu"))
+
+def my_key_kb(lang):
+    return types.InlineKeyboardMarkup().add(
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["key_url"], url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["instructions"], callback_data="instructions"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["back"], callback_data="back:menu"))

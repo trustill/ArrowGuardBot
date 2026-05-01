@@ -4,6 +4,7 @@ from async_main import bot
 from async_main import db_client
 
 import telebot
+import keyboards
 
 app = FastAPI()
 
@@ -56,16 +57,22 @@ async def payment_webhook(request: Request):
 
     status = data.get("status")
     user_id = data.get("user_id")
+
+    lang = db_client.get_user_lang(user_id)
     user_status = 1
 
     if status == "success":
+        kb = keyboards.my_key_kb(lang)
         db_client.change_user_status(user_id, user_status)
 
-        bot.send_message(user_id,
-                         "✅ Оплата прошла! <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Нажмите, чтобы получить ключ</a>",
-                         parse_mode="html")
+        bot.send_message(chat_id=user_id,
+                         text="✅ Оплата прошла!",
+                         reply_markup=kb)
     else:
-        bot.send_message(user_id, "❌ Оплата отменена")
+        kb = keyboards.back_kb(lang)
+        bot.send_message(chat_id=user_id,
+                         text="❌ Оплата отменена",
+                         reply_markup=kb)
 
     return {"ok": True}
 

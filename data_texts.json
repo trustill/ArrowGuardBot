@@ -5,7 +5,9 @@
       "account_menu": "Личный кабинет:\nID: {user_id}\nСтатус: {status}\nПодписка активна до: {sub_end}\n\nЯ всегда здесь. Если что-то нужно — жми кнопки ниже.",
       "accept_tou_menu": "8 правил Бойцовского клуба:\nПервое правило: Не упоминать о бойцовском клубе.\nВторое правило: Нигде не упоминать о бойцовском клубе.\nТретье правило: Если противник крикнул «стоп», выдохся или отключился — бой окончен.\nЧетвертое правило: В бою участвуют лишь двое.\nПятое правило: В один вечер — только один поединок.\nШестое правило: Снимать обувь и рубашку.\nСедьмое правило: Бой продолжается столько, сколько потребуется.\nВосьмое правило: Тот, кто впервые пришел в клуб, примет бой.",
       "choose_plan": "Выберите подходящий тариф:",
-      "order_made": "Отлично, ваш заказ создан!\nВот ваша ссылка для оплаты: <a href=\"https://arrowguardbot.onrender.com/pay?user_id={user_id}\">ссылка активна 15 минут</a>"
+      "order_made": "Отлично, ваш заказ создан!\nВот ваша ссылка для оплаты: <a href=\"https://arrowguardbot.onrender.com/pay?user_id={user_id}\">ссылка активна 15 минут</a>",
+      "get_my_key": "У вас есть один активный ключ! Используйте кнопку ниже, чтобы получить ключ:",
+      "missing_key": "У вас нет активных ключей. Вы можете приобрести подписку и получить доступ к нашему безграничному сервису!"
     },
     "buttons": {
       "try_free": "Попробовать бесплатно \uD83C\uDF81",
@@ -17,7 +19,9 @@
       "back": "Назад \uD83D\uDD19",
       "one_month": "1 месяц - 179₽",
       "three_month": "3 месяца - 299₽",
-      "one_year": "1 год - 899₽"
+      "one_year": "1 год - 899₽",
+      "key_url": "Получить ключ \uD83D\uDD11",
+      "instructions": "Инструкция для использования \uD83D\uDCDA"
     }
   },
   "english": {
@@ -26,7 +30,9 @@
       "account_menu": "Account:\nID: {user_id}\nStatus: {status}\nSubscription valid until: {sub_end}\nActive keys: {active_keys}\n\nI'm always here. If you need anything, click the buttons below.",
       "accept_tou_menu": "8 rules of Fight Club:\nFirst rule: You do not talk about FIGHT CLUB\nSecond rule: You DO NOT talk about FIGHT CLUB\nThird rule: If someone says “stop” or goes limp, taps out, the fight is over\nFourth rule: Only two guys to a fight\nFifth rule: One fight at a time, fellas\nSixth rule: No shirts, no shoes\nSeventh rule: Fights will go on as long as they have to\nEighth rule: If this is your first night at FIGHT CLUB, you HAVE to fight",
       "choose_plan": "Choose your plan:",
-      "order_made": "Great, your order has been placed!\nHere is your payment link: <a href=\"https://arrowguardbot.onrender.com/pay?user_id={user_id}\">link valid for 15 minutes</a>"
+      "order_made": "Great, your order has been placed!\nHere is your payment link: <a href=\"https://arrowguardbot.onrender.com/pay?user_id={user_id}\">link valid for 15 minutes</a>",
+      "get_my_key": "You have one active key! Use the button below to retrieve your key:",
+      "missing_key": "You don't have any active keys. You can purchase a subscription and gain access to our unlimited service!"
     },
     "buttons": {
       "try_free": "Try for free \uD83C\uDF81",
@@ -38,7 +44,9 @@
       "back": "Go back",
       "one_month": "1 month - 179₽",
       "three_month": "3 month - 299₽",
-      "one_year": "1 year - 899₽"
+      "one_year": "1 year - 899₽",
+      "key_url": "Get the key \uD83D\uDD11",
+      "instructions": "Instructions for use \uD83D\uDCDA"
     }
   }
 }

@@ -167,3 +167,23 @@ def back_to_menu(query):
     bot.send_message(chat_id=user_id,
                       text=result_text,
                       reply_markup=kb)
+
+@bot.callback_query_handler(func=lambda x: x.data.startswith('my_key'))
+def my_keys_menu(query):
+    user_id = query.message.chat.id
+    bot.delete_message(chat_id=user_id,
+                       message_id=query.message.id)
+
+    lang = db_client.get_user_lang(user_id)
+    user_status = db_client.get_user_status(user_id)
+
+    kb = keyboards.my_key_kb(lang) if user_status == 1 else keyboards.back_kb(lang)
+
+    if user_status == 1:
+        bot.send_message(chat_id=user_id,
+                         text=msg_data[lang]["messages"]["get_my_key"],
+                         reply_markup=kb)
+    else:
+        bot.send_message(chat_id=user_id,
+                         text=msg_data[lang]["messages"]["missing_key"],
+                         reply_markup=kb)
