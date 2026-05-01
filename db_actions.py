@@ -83,6 +83,11 @@ class SqlQuery:
 
         self.execute_query(query, lang, user_id)
 
+    def change_user_status(self, user_id, new_status):
+        query = "update users_data set user_status = %s where user_id = %s"
+
+        self.execute_query(query, new_status, user_id)
+
     def get_user_status(self, user_id):
         with psycopg2.connect(self.conn_str) as conn:
             with conn.cursor() as cursor:

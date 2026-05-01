@@ -1,6 +1,7 @@
 from fastapi.responses import HTMLResponse
 from fastapi import FastAPI, Request
 from async_main import bot
+from async_main import db_client
 
 import telebot
 
@@ -28,7 +29,7 @@ async def pay_page(user_id: int):
 
         <script>
         function pay(success) {{
-            fetch("https://catchhooks.com/api/w/EEb9fdTvtX", {{
+            fetch("https://arrowguardbot.onrender.com/payment-webhook", {{
                 method: "POST",
                 headers: {{
                     "Content-Type": "application/json"
@@ -55,8 +56,11 @@ async def payment_webhook(request: Request):
 
     status = data.get("status")
     user_id = data.get("user_id")
+    user_status = 1
 
     if status == "success":
+        db_client.change_user_status(user_id, user_status)
+
         bot.send_message(user_id,
                          "✅ Оплата прошла! <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Нажмите, чтобы получить ключ</a>",
                          parse_mode="html")

@@ -48,6 +48,16 @@ def send_photo_(chat_id, photo_url=images_url["except_image"], text="Empty", kb=
     else:
         print("Chat ID is empty")
 
+def get_account_data(user_id):
+    lang = db_client.get_user_lang(user_id)
+
+    user_status = "Не активен" if db_client.get_user_status(user_id) == 0 else "Активен"
+    sub_end_date = db_client.get_end_sub(user_id) or "Не активно"
+
+    return msg_data[lang]["messages"]["account_menu"].format(user_id=user_id,
+                                                                    status=user_status,
+                                                                    sub_end=sub_end_date)
+
 @bot.message_handler(commands=["start"])
 def start_conversation(msg):
     kb_choose_lang = keyboards.choose_language_kb()
@@ -103,15 +113,9 @@ def account_menu(query):
                        message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
-    print(lang)
     kb = keyboards.account_kb(lang)
 
-    user_status = "Не активен" if db_client.get_user_status(user_id) == 0 else "Активен"
-    sub_end_date = db_client.get_end_sub(user_id) or "Не активно"
-
-    result_text = msg_data[lang]["messages"]["account_menu"].format(user_id=user_id,
-                                                                    status=user_status,
-                                                                    sub_end=sub_end_date)
+    result_text = get_account_data(user_id)
 
     bot.send_message(chat_id=user_id,
                      text=result_text,
@@ -151,13 +155,15 @@ def preparing_plan(query):
                      parse_mode="html")
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('back'))
-def go_back(query):
+def back_to_menu(query):
     user_id = query.message.chat.id
+    bot.delete_message(chat_id=user_id,
+                       message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
     kb = keyboards.account_kb(lang)
+    result_text = get_account_data(user_id)
 
-    bot.edit_message_text(chat_id=user_id,
-                          message_id=query.message.id,
-                          text=query.message.text,
-                          reply_markup=kb)
+    bot.send_message(chat_id=user_id,
+                      text=result_text,
+                      reply_markup=kb)
