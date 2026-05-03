@@ -167,7 +167,6 @@ def back_to_menu(query):
                        message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
-    bot.send_message(chat_id=user_id, text=menu)
 
     if menu == "account":
         kb = keyboards.account_kb(lang)
@@ -191,11 +190,8 @@ def back_to_menu(query):
                          text=result_text,
                          reply_markup=kb)
     elif menu == "platforms":
-        bot.send_message(chat_id=user_id, text=menu)
         kb = keyboards.platforms_kb(lang)
-        bot.send_message(chat_id=user_id, text=menu)
-        result_text = msg_data[lang]["message"]["choose_platform"]
-        bot.send_message(chat_id=user_id, text=result_text)
+        result_text = msg_data[lang]["messages"]["choose_platform"]
 
         bot.send_message(chat_id=user_id,
                          text=result_text,
