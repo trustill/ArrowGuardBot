@@ -93,16 +93,18 @@ class SqlQuery:
             with conn.cursor() as cursor:
                 cursor.execute('select is_active from subscriptions where user_id = %s',
                                [user_id, ])
+                result = cursor.fetchone()
 
-                return cursor.fetchone()[0]
+                return result[0] if result else 0
 
     def get_end_sub(self, user_id):
         with psycopg2.connect(self.conn_str) as conn:
             with conn.cursor() as cursor:
                 cursor.execute('select end_date from subscriptions where user_id = %s',
                                [user_id, ])
+                result = cursor.fetchone()
 
-                return cursor.fetchone()[0]
+                return result[0] if result else 0
 
     def create_payment(self, user_id, plan, status):
         query = ("insert into payments "
