@@ -167,6 +167,7 @@ def back_to_menu(query):
                        message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
+    bot.send_message(chat_id=user_id, text=menu)
 
     if menu == "account":
         kb = keyboards.account_kb(lang)
