@@ -67,10 +67,19 @@ async def payment_webhook(request: Request):
 
     if status == "success":
         db_client.update_payment_data(payment_id, status, datetime.now())
+        user_sub = db_client.get_user_subscription(user_id)
 
-
+        if user_sub != None:
+            db_client.update_current_subscription(user_id=user_id,
+                                                  plan=payment_data["plan"],
+                                                  is_trial=False)
+        else:
+            db_client.create_new_subscription(user_id=user_id,
+                                                  plan=payment_data["plan"],
+                                                  is_trial=False)
 
         kb = keyboards.my_key_kb(lang)
+        delete_offer_message(user_id, payment_data["message_id"])
 
         bot.send_message(chat_id=user_id,
                          text="✅ Оплата прошла!",
@@ -94,3 +103,7 @@ async def tg_webhook(request: Request):
     bot.process_new_updates([update])
 
     return {"ok": True}
+
+def delete_offer_message(user_id, message_id):
+    bot.delete_message(chat_id=user_id,
+                       message_id=message_id)

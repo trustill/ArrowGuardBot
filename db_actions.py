@@ -105,24 +105,28 @@ class SqlQuery:
                 return cursor.fetchone()[0]
 
     def create_payment(self, user_id, plan, status):
-        query = ("insert into payments"
-                 "(user_id, plan, status, message_id, paid_at)"
-                 "values (%s, %s, %s, %s, %s)"
-                 "on conflict (user_id) do nothing")
+        query = ("insert into payments "
+                 "(user_id, plan, status, message_id, paid_at) "
+                 "values (%s, %s, %s, %s, %s)")
 
         self.execute_query(query, user_id, plan, status, None, None)
         with psycopg2.connect(self.conn_str) as conn:
             with conn.cursor() as cursor:
-                cursor.execute('select id from payments where user_id = %s and status = "pending"',
+                cursor.execute("select id from payments where user_id = %s and status = 'pending'",
                                [user_id, ])
                 return cursor.fetchone()[0]
+
+    def set_message_id(self, payment_id, message_id):
+        query = "update payment set message_id = %s where id = %s"
+
+        self.execute_query(query, message_id, payment_id)
 
     def get_payment_by_id(self, id):
         with psycopg2.connect(self.conn_str) as conn:
             with conn.cursor() as cursor:
                 cursor.execute('select * from payments where id = %s',
                                [id, ])
-                return cursor.fetchone()[0]
+                return cursor.fetchone()
 
     def update_payment_data(self, id, status, pay_time=None):
         query = "update payment set status = %s, paid_at = %s where id = %s"
@@ -166,4 +170,4 @@ class SqlQuery:
             with conn.cursor() as cursor:
                 cursor.execute('select * from subscriptions where user_id = %s',
                                [user_id, ])
-                return cursor.fetchone()[0]
+                return cursor.fetchone()

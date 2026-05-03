@@ -144,7 +144,7 @@ def subscribe_on_service(query):
                      text=msg_data[lang]["messages"]["choose_plan"],
                      reply_markup=kb)
 
-@bot.callback_query_handler(func=lambda x: x.data.startswith('sub'))
+@bot.callback_query_handler(func=lambda x: x.data.startswith('sub:'))
 def preparing_plan(query):
     user_id = query.message.chat.id
     bot.delete_message(chat_id=user_id,
@@ -162,23 +162,26 @@ def preparing_plan(query):
         plan_str = msg_data[lang]["messages"]["one_month"]
         result_text = msg_data[lang]["messages"]["order_made"].format(plan=plan_str)
 
-        bot.send_message(chat_id=user_id,
+        message = bot.send_message(chat_id=user_id,
                          text=result_text,
                          reply_markup=kb)
+        db_client.set_message_id(payment_id, message.message_id)
     elif plan == "3month":
         plan_str = msg_data[lang]["messages"]["three_month"]
         result_text = msg_data[lang]["messages"]["order_made"].format(plan=plan_str)
 
-        bot.send_message(chat_id=user_id,
+        message = bot.send_message(chat_id=user_id,
                          text=result_text,
                          reply_markup=kb)
+        db_client.set_message_id(payment_id, message.message_id)
     elif plan == "1year":
         plan_str = msg_data[lang]["messages"]["one_year"]
         result_text = msg_data[lang]["messages"]["order_made"].format(plan=plan_str)
 
-        bot.send_message(chat_id=user_id,
+        message = bot.send_message(chat_id=user_id,
                          text=result_text,
                          reply_markup=kb)
+        db_client.set_message_id(payment_id, message.message_id)
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('back'))
 def back_to_menu(query):
