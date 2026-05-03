@@ -51,7 +51,7 @@ def send_photo_(chat_id, photo_url=images_url["except_image"], text="Empty", kb=
 def get_account_data(user_id):
     lang = db_client.get_user_lang(user_id)
 
-    user_status = "Не активен" if db_client.get_user_status(user_id) == 0 else "Активен"
+    user_status = "Не активен" if db_client.get_user_status(user_id) == False else "Активен"
     sub_end_date = db_client.get_end_sub(user_id) or "Неизвестно"
 
     return msg_data[lang]["messages"]["account_menu"].format(user_id=user_id,
