@@ -182,6 +182,20 @@ def back_to_menu(query):
         bot.send_message(chat_id=user_id,
                          text=result_text,
                          reply_markup=kb)
+    elif menu == "user_key":
+        kb = keyboards.my_key_kb(lang)
+        result_text = msg_data[lang]["messages"]["get_my_key"]
+
+        bot.send_message(chat_id=user_id,
+                         text=result_text,
+                         reply_markup=kb)
+    elif menu == "platforms":
+        kb = keyboards.platforms_kb(lang)
+        result_text = msg_data[lang]["message"]["choose_platform"]
+
+        bot.send_message(chat_id=user_id,
+                         text=result_text,
+                         reply_markup=kb)
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('my_key'))
 def my_keys_menu(query):
@@ -201,4 +215,51 @@ def my_keys_menu(query):
     else:
         bot.send_message(chat_id=user_id,
                          text=msg_data[lang]["messages"]["missing_key"],
+                         reply_markup=kb)
+
+@bot.callback_query_handler(func=lambda x: x.data.startswith('instructions'))
+def choice_platform(query):
+    user_id = query.message.chat.id
+    bot.delete_message(chat_id=user_id,
+                       message_id=query.message.id)
+
+    lang = db_client.get_user_lang(user_id)
+    kb = keyboards.platforms_kb(lang)
+
+    bot.send_message(chat_id=user_id,
+                     text=msg_data[lang]["messages"]["choose_platform"],
+                     reply_markup=kb)
+
+@bot.callback_query_handler(func=lambda x: x.data.startswith('platform'))
+def user_manual(query):
+    platform = query.data.split(":")[1]
+    user_id = query.message.chat.id
+    bot.delete_message(chat_id=user_id,
+                       message_id=query.message.id)
+
+    lang = db_client.get_user_lang(user_id)
+
+    if platform == "android":
+        kb = keyboards.manual_kb(lang, images_url["android_url"])
+        result_text = msg_data[lang]["messages"]["manual"].format(platform=platform.capitalize(),
+                                                                  app_shop="Google Play")
+
+        bot.send_message(chat_id=user_id,
+                         text=result_text,
+                         reply_markup=kb)
+    elif platform == "iphone":
+        kb = keyboards.manual_kb(lang, images_url["iphone_url"])
+        result_text = msg_data[lang]["messages"]["manual"].format(platform=platform.capitalize(),
+                                                                  app_shop="AppStore")
+
+        bot.send_message(chat_id=user_id,
+                         text=result_text,
+                         reply_markup=kb)
+    elif platform == "windows":
+        kb = keyboards.manual_kb(lang, images_url["windows_url"])
+        result_text = msg_data[lang]["messages"]["manual"].format(platform=platform.capitalize(),
+                                                                  app_shop="GitHub")
+
+        bot.send_message(chat_id=user_id,
+                         text=result_text,
                          reply_markup=kb)
