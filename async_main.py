@@ -52,7 +52,7 @@ def get_account_data(user_id):
     lang = db_client.get_user_lang(user_id)
 
     user_status = "Не активен" if db_client.get_user_status(user_id) == 0 else "Активен"
-    sub_end_date = db_client.get_end_sub(user_id) or "Не активно"
+    sub_end_date = db_client.get_end_sub(user_id) or "Неизвестно"
 
     return msg_data[lang]["messages"]["account_menu"].format(user_id=user_id,
                                                                     status=user_status,
@@ -161,17 +161,27 @@ def preparing_plan(query):
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('back'))
 def back_to_menu(query):
+    menu = query.data.split(":")[1]
     user_id = query.message.chat.id
     bot.delete_message(chat_id=user_id,
                        message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
-    kb = keyboards.account_kb(lang)
-    result_text = get_account_data(user_id)
 
-    bot.send_message(chat_id=user_id,
-                      text=result_text,
-                      reply_markup=kb)
+    if menu == "account":
+        kb = keyboards.account_kb(lang)
+        result_text = get_account_data(user_id)
+
+        bot.send_message(chat_id=user_id,
+                          text=result_text,
+                          reply_markup=kb)
+    elif menu == "plans":
+        kb = keyboards.get_plans(lang)
+        result_text = msg_data[lang]["message"]["choose_plan"]
+
+        bot.send_message(chat_id=user_id,
+                         text=result_text,
+                         reply_markup=kb)
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('my_key'))
 def my_keys_menu(query):

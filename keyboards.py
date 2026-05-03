@@ -44,7 +44,7 @@ def my_key_kb(lang):
     return types.InlineKeyboardMarkup(row_width=1).add(
         types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["key_url"], url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
         types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["instructions"], callback_data="instructions"),
-        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["back"], callback_data="back:menu"))
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["back"], callback_data="back:account"))
 
 def pay_kb(lang, user_id):
     return types.InlineKeyboardMarkup(row_width=1).add(

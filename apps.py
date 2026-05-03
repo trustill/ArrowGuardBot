@@ -18,7 +18,7 @@ async def pay_page(user_id: int):
     <body style="font-family:sans-serif; text-align:center; margin-top:50px;">
 
         <h2>🧪 Тестовая оплата</h2>
-        <p>Привет Амстердам, это тестовое окно оплаты. Деньги списываться не будут, только девственность</p>
+        <p>Привет Амстердам, это тестовое окно оплаты. Деньги списываться не будут</p>
 
         <button onclick="pay(true)" style="padding:10px 20px; margin:10px;">
             ✅ Оплатить
