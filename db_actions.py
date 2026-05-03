@@ -119,7 +119,7 @@ class SqlQuery:
                 return cursor.fetchone()[0]
 
     def set_message_id(self, payment_id, message_id):
-        query = "update payment set message_id = %s where id = %s"
+        query = "update payments set message_id = %s where id = %s"
 
         self.execute_query(query, message_id, payment_id)
 
@@ -131,7 +131,7 @@ class SqlQuery:
                 return cursor.fetchone()
 
     def update_payment_data(self, id, status, pay_time=None):
-        query = "update payment set status = %s, paid_at = %s where id = %s"
+        query = "update payments set status = %s, paid_at = %s where id = %s"
 
         self.execute_query(query, status, pay_time, id)
         return True

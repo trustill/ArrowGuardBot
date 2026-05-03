@@ -5,7 +5,7 @@ from async_main import db_client
 
 import telebot
 import keyboards
-from datetime import datetime
+from datetime import datetime, timezone
 
 app = FastAPI()
 
@@ -66,20 +66,20 @@ async def payment_webhook(request: Request):
     lang = db_client.get_user_lang(user_id)
 
     if status == "success":
-        db_client.update_payment_data(payment_id, status, datetime.now())
+        db_client.update_payment_data(payment_id, status, datetime.now(timezone.utc))
         user_sub = db_client.get_user_subscription(user_id)
 
-        if user_sub != None:
+        if user_sub:
             db_client.update_current_subscription(user_id=user_id,
-                                                  plan=payment_data["plan"],
+                                                  plan=payment_data[2],
                                                   is_trial=False)
         else:
             db_client.create_new_subscription(user_id=user_id,
-                                                  plan=payment_data["plan"],
+                                                  plan=payment_data[2],
                                                   is_trial=False)
 
         kb = keyboards.my_key_kb(lang)
-        delete_offer_message(user_id, payment_data["message_id"])
+        delete_offer_message(user_id, payment_data[4])
 
         bot.send_message(chat_id=user_id,
                          text="✅ Оплата прошла!",
