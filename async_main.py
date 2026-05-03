@@ -238,10 +238,9 @@ def user_manual(query):
                        message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
-    bot.send_message(chat_id=user_id, text=platform)
 
     if platform == "android":
-        kb = keyboards.manual_kb(lang, images_url["android_url"])
+        kb = keyboards.manual_kb(lang, images_url["url_android"])
         result_text = msg_data[lang]["messages"]["manual"].format(platform=platform.capitalize(),
                                                                   app_shop="Google Play")
 
@@ -249,7 +248,7 @@ def user_manual(query):
                          text=result_text,
                          reply_markup=kb)
     elif platform == "iphone":
-        kb = keyboards.manual_kb(lang, images_url["iphone_url"])
+        kb = keyboards.manual_kb(lang, images_url["url_iphone"])
         result_text = msg_data[lang]["messages"]["manual"].format(platform=platform.capitalize(),
                                                                   app_shop="AppStore")
 
@@ -257,7 +256,7 @@ def user_manual(query):
                          text=result_text,
                          reply_markup=kb)
     elif platform == "windows":
-        kb = keyboards.manual_kb(lang, images_url["windows_url"])
+        kb = keyboards.manual_kb(lang, images_url["url_windows"])
         result_text = msg_data[lang]["messages"]["manual"].format(platform=platform.capitalize(),
                                                                   app_shop="GitHub")
 
