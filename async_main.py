@@ -193,6 +193,7 @@ def back_to_menu(query):
     elif menu == "platforms":
         bot.send_message(chat_id=user_id, text=menu)
         kb = keyboards.platforms_kb(lang)
+        bot.send_message(chat_id=user_id, text=menu)
         result_text = msg_data[lang]["message"]["choose_platform"]
         bot.send_message(chat_id=user_id, text=result_text)
 
