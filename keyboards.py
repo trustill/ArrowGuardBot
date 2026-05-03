@@ -52,16 +52,14 @@ def pay_kb(lang, user_id):
     types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["cancel_payment"], callback_data="back:plans"))
 
 def platforms_kb(lang):
-    def start_kb(lang):
-        return types.InlineKeyboardMarkup(row_width=1).add(
-            types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["android"], callback_data="platform:android"),
-            types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["iphone"], callback_data="platform:iphone"),
-            types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["windows"], callback_data="platform:windows"),
-        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["cancel_payment"], callback_data="back:user_key"))
+    return types.InlineKeyboardMarkup(row_width=1).add(
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["android"], callback_data="platform:android"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["iphone"], callback_data="platform:iphone"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["windows"], callback_data="platform:windows"),
+    types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["back"], callback_data="back:user_key"))
 
 def manual_kb(lang, url):
-    def start_kb(lang):
-        return types.InlineKeyboardMarkup(row_width=1).add(
-            types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["download_client"], url=url),
-            types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["key_url"], url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
-            types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["back"], callback_data="back:platforms"))
+    return types.InlineKeyboardMarkup(row_width=1).add(
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["download_client"], url=url),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["key_url"], url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"),
+        types.InlineKeyboardButton(text=msg_data[lang]["buttons"]["back"], callback_data="back:platforms"))
