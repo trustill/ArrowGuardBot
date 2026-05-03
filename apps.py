@@ -87,6 +87,8 @@ async def payment_webhook(request: Request):
     else:
         db_client.update_payment_data(payment_id, status)
         kb = keyboards.back_kb(lang)
+        delete_offer_message(user_id, payment_data[4])
+
         bot.send_message(chat_id=user_id,
                          text="❌ Оплата отменена",
                          reply_markup=kb)

@@ -12,7 +12,8 @@
       "manual": "{platform}:\n\n1. Установите приложение-клиент из {app_shop} по кнопке “Скачать клиент ⬇“\n\n2. Скопируйте ключ нажав на кнопку “Получить ключ \uD83D\uDD11“\n\n3. Зайдите в приложение-клиент, вставьте полученный ключ и пользуйтесь сервисом!",
       "one_month": "1 месяц за 179₽",
       "three_month": "3 месяца за 299₽",
-      "one_year": "1 год за 899₽"
+      "one_year": "1 год за 899₽",
+      "subscription_renewal": "У вас уже есть активная подписка. Пользуйтесь ею, а если нужно продлить, то ждите - эта функция пока не реализованна"
     },
     "buttons": {
       "try_free": "Попробовать бесплатно \uD83C\uDF81",
@@ -48,7 +49,8 @@
       "manual": "{platform}:\n\n1. Install the client app from {app_shop} by clicking the “Download Client ⬇“ button\n\n2. Copy the key by clicking the “Get the key \uD83D\uDD11“ button\n\n3. Open the client app, paste the key you received, and start using the service!",
       "one_month": "1 month for 179₽",
       "three_month": "3 month for 299₽",
-      "one_year": "1 year for 899₽"
+      "one_year": "1 year for 899₽",
+      "subscription_renewal": "You already have an active subscription. Please use it. If you need to renew it, please wait—this feature is not yet available."
     },
     "buttons": {
       "try_free": "Try for free \uD83C\uDF81",

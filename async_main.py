@@ -138,11 +138,18 @@ def subscribe_on_service(query):
                        message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
-    kb = keyboards.get_plans(lang)
+    is_active = db_client.get_user_subscription(user_id)[5]
+    if is_active:
+        kb = keyboards.back_kb(lang)
+        bot.send_message(chat_id=user_id,
+                         text=msg_data[lang]["messages"]["subscription_renewal"],
+                         reply_markup=kb)
+    else:
+        kb = keyboards.get_plans(lang)
 
-    bot.send_message(chat_id=user_id,
-                     text=msg_data[lang]["messages"]["choose_plan"],
-                     reply_markup=kb)
+        bot.send_message(chat_id=user_id,
+                         text=msg_data[lang]["messages"]["choose_plan"],
+                         reply_markup=kb)
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('sub:'))
 def preparing_plan(query):
