@@ -5,11 +5,14 @@
       "account_menu": "Личный кабинет:\nID: {user_id}\nСтатус: {status}\nПодписка активна до: {sub_end}\n\nЯ всегда здесь. Если что-то нужно — жми кнопки ниже.",
       "accept_tou_menu": "8 правил Бойцовского клуба:\nПервое правило: Не упоминать о бойцовском клубе.\nВторое правило: Нигде не упоминать о бойцовском клубе.\nТретье правило: Если противник крикнул «стоп», выдохся или отключился — бой окончен.\nЧетвертое правило: В бою участвуют лишь двое.\nПятое правило: В один вечер — только один поединок.\nШестое правило: Снимать обувь и рубашку.\nСедьмое правило: Бой продолжается столько, сколько потребуется.\nВосьмое правило: Тот, кто впервые пришел в клуб, примет бой.",
       "choose_plan": "Выберите подходящий тариф:",
-      "order_made": "Отлично, ваш заказ создан!\nВот ваша ссылка для оплаты:",
+      "order_made": "Отлично, ваш заказ создан! Вы выбрали план {plan}\n\nВот ваша ссылка для оплаты:",
       "get_my_key": "У вас есть один активный ключ! Используйте кнопку ниже, чтобы получить ключ:",
       "missing_key": "У вас нет активных ключей. Вы можете приобрести подписку и получить доступ к нашему безграничному сервису!",
       "choose_platform": "Выберите нужную вам платформу, чтобы получить подробную инструкцию для подключения сервиса \uD83D\uDCDA",
-      "manual": "{platform}:\n\n1. Установите приложение-клиент из {app_shop} по кнопке “Скачать клиент ⬇“\n\n2. Скопируйте ключ нажав на кнопку “Получить ключ \uD83D\uDD11“\n\n3. Зайдите в приложение-клиент, вставьте полученный ключ и пользуйтесь сервисом!"
+      "manual": "{platform}:\n\n1. Установите приложение-клиент из {app_shop} по кнопке “Скачать клиент ⬇“\n\n2. Скопируйте ключ нажав на кнопку “Получить ключ \uD83D\uDD11“\n\n3. Зайдите в приложение-клиент, вставьте полученный ключ и пользуйтесь сервисом!",
+      "one_month": "1 месяц за 179₽",
+      "three_month": "3 месяца за 299₽",
+      "one_year": "1 год за 899₽"
     },
     "buttons": {
       "try_free": "Попробовать бесплатно \uD83C\uDF81",
@@ -38,11 +41,14 @@
       "account_menu": "Account:\nID: {user_id}\nStatus: {status}\nSubscription valid until: {sub_end}\nActive keys: {active_keys}\n\nI'm always here. If you need anything, click the buttons below.",
       "accept_tou_menu": "8 rules of Fight Club:\nFirst rule: You do not talk about FIGHT CLUB\nSecond rule: You DO NOT talk about FIGHT CLUB\nThird rule: If someone says “stop” or goes limp, taps out, the fight is over\nFourth rule: Only two guys to a fight\nFifth rule: One fight at a time, fellas\nSixth rule: No shirts, no shoes\nSeventh rule: Fights will go on as long as they have to\nEighth rule: If this is your first night at FIGHT CLUB, you HAVE to fight",
       "choose_plan": "Choose your plan:",
-      "order_made": "Great, your order has been placed!\nHere is your payment link:",
+      "order_made": "Great, your order has been placed! You have selected the {plan} plan\n\nHere is your payment link:",
       "get_my_key": "You have one active key! Use the button below to retrieve your key:",
       "missing_key": "You don't have any active keys. You can purchase a subscription and gain access to our unlimited service!",
       "choose_platform": "Select the platform you need to get detailed instructions on how to connect to our service \uD83D\uDCDA",
-      "manual": "{platform}:\n\n1. Install the client app from {app_shop} by clicking the “Download Client ⬇“ button\n\n2. Copy the key by clicking the “Get the key \uD83D\uDD11“ button\n\n3. Open the client app, paste the key you received, and start using the service!"
+      "manual": "{platform}:\n\n1. Install the client app from {app_shop} by clicking the “Download Client ⬇“ button\n\n2. Copy the key by clicking the “Get the key \uD83D\uDD11“ button\n\n3. Open the client app, paste the key you received, and start using the service!",
+      "one_month": "1 month for 179₽",
+      "three_month": "3 month for 299₽",
+      "one_year": "1 year for 899₽"
     },
     "buttons": {
       "try_free": "Try for free \uD83C\uDF81",

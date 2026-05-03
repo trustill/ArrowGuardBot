@@ -5,11 +5,12 @@ from async_main import db_client
 
 import telebot
 import keyboards
+from datetime import datetime
 
 app = FastAPI()
 
 @app.get("/pay")
-async def pay_page(user_id: int):
+async def pay_page(user_id: int, payment_id: int):
     return HTMLResponse(f"""
     <html>
     <head>
@@ -37,7 +38,8 @@ async def pay_page(user_id: int):
                 }},
                 body: JSON.stringify({{
                     status: success ? "success" : "fail",
-                    user_id: {user_id}
+                    user_id: {user_id},
+                    payment_id: {payment_id}
                 }})
             }}).then(() => {{
                 document.body.innerHTML = success 
@@ -57,18 +59,24 @@ async def payment_webhook(request: Request):
 
     status = data.get("status")
     user_id = data.get("user_id")
+    payment_id = data.get("payment_id")
+
+    payment_data = db_client.get_payment_by_id(payment_id)
 
     lang = db_client.get_user_lang(user_id)
-    user_status = 1
 
     if status == "success":
+        db_client.update_payment_data(payment_id, status, datetime.now())
+
+
+
         kb = keyboards.my_key_kb(lang)
-        db_client.change_user_status(user_id, user_status)
 
         bot.send_message(chat_id=user_id,
                          text="✅ Оплата прошла!",
                          reply_markup=kb)
     else:
+        db_client.update_payment_data(payment_id, status)
         kb = keyboards.back_kb(lang)
         bot.send_message(chat_id=user_id,
                          text="❌ Оплата отменена",
