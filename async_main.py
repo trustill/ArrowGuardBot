@@ -177,7 +177,7 @@ def back_to_menu(query):
                           reply_markup=kb)
     elif menu == "plans":
         kb = keyboards.get_plans(lang)
-        result_text = msg_data[lang]["message"]["choose_plan"]
+        result_text = msg_data[lang]["messages"]["choose_plan"]
 
         bot.send_message(chat_id=user_id,
                          text=result_text,
