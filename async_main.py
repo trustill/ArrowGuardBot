@@ -238,6 +238,7 @@ def user_manual(query):
                        message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
+    print(platform)
 
     if platform == "android":
         kb = keyboards.manual_kb(lang, images_url["android_url"])
