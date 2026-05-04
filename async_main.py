@@ -138,15 +138,22 @@ def subscribe_on_service(query):
                        message_id=query.message.id)
 
     lang = db_client.get_user_lang(user_id)
+    bot.send_message(chat_id=query.message.chat.id,
+                     text="Step 1")
     is_active = db_client.get_user_subscription(user_id)[5]
+    bot.send_message(chat_id=query.message.chat.id,
+                     text="Step 2")
     if is_active != None:
         kb = keyboards.back_kb(lang)
         bot.send_message(chat_id=user_id,
                          text=msg_data[lang]["messages"]["subscription_renewal"],
                          reply_markup=kb)
     else:
+        bot.send_message(chat_id=query.message.chat.id,
+                         text="Step 3")
         kb = keyboards.get_plans(lang)
-
+        bot.send_message(chat_id=query.message.chat.id,
+                         text="Step 4")
         bot.send_message(chat_id=user_id,
                          text=msg_data[lang]["messages"]["choose_plan"],
                          reply_markup=kb)
