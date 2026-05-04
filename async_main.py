@@ -60,42 +60,17 @@ def get_account_data(user_id):
 
 @bot.message_handler(commands=["start"])
 def start_conversation(msg):
-    print("STEP 1")
-
-    bot.send_message(chat_id=msg.chat.id, text="TEST")
-
-    print("STEP 2")
-
-    try:
-        client = db_client.get_user(msg.chat.id)
-        print("CLIENT:", client)
-    except Exception as e:
-        print("ERROR get_user:", e)
-        bot.send_message(msg.chat.id, "Ошибка БД (get_user)")
-        return
-
-    print("STEP 3")
-
     kb_choose_lang = keyboards.choose_language_kb()
+    client = db_client.get_user(msg.chat.id)
 
     if client:
-        print("STEP 4 - existing user")
         welcome_message(msg, msg.from_user.first_name)
     else:
-        print("STEP 5 - new user")
+        db_client.add_new_user(msg.chat.id)
 
-        try:
-            db_client.add_new_user(msg.chat.id)
-        except Exception as e:
-            print("ERROR add_user:", e)
-            bot.send_message(msg.chat.id, "Ошибка БД (add_user)")
-            return
-
-        bot.send_message(
-            chat_id=msg.chat.id,
-            text="Выберите язык:",
-            reply_markup=kb_choose_lang
-        )
+        bot.send_message(chat_id=msg.chat.id,
+                               text="Выберите язык:",
+                               reply_markup=kb_choose_lang)
 
 @bot.callback_query_handler(func=lambda x: x.data.startswith('change_lang_to_ru'))
 def change_lang_ru(query):
