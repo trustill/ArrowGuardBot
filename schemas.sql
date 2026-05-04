@@ -2,7 +2,7 @@
 CREATE TABLE users_data (
     user_id BIGINT PRIMARY KEY,
     -- Язык в боте для юзера
-    user_lang TEXT,
+    user_lang TEXT DEFAULT 'russian',
     accept_tou BOOlEAN,
     created_at TIMESTAMP DEFAULT NOW()
 );

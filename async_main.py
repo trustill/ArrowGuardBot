@@ -139,7 +139,7 @@ def subscribe_on_service(query):
 
     lang = db_client.get_user_lang(user_id)
     is_active = db_client.get_user_subscription(user_id)[5]
-    if is_active:
+    if is_active != None:
         kb = keyboards.back_kb(lang)
         bot.send_message(chat_id=user_id,
                          text=msg_data[lang]["messages"]["subscription_renewal"],
