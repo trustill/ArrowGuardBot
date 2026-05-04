@@ -1,11 +1,14 @@
+import telebot
+import keyboards
+import async_main
+
+from datetime import datetime, timezone
 from fastapi.responses import HTMLResponse
 from fastapi import FastAPI, Request
 from async_main import bot
 from async_main import db_client
 
-import telebot
-import keyboards
-from datetime import datetime, timezone
+
 
 app = FastAPI()
 
@@ -100,6 +103,7 @@ async def tg_webhook(request: Request):
     data = await request.json()
 
     print("Webhook worked!")
+    print(bot.message_handlers)
 
     update = telebot.types.Update.de_json(data)
     bot.process_new_updates([update])

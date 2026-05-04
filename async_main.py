@@ -60,6 +60,9 @@ def get_account_data(user_id):
 
 @bot.message_handler(commands=["start"])
 def start_conversation(msg):
+    print("TEST")
+    bot.send_message(chat_id=msg.chat.id,
+                     text="TEST")
     kb_choose_lang = keyboards.choose_language_kb()
     client = db_client.get_user(msg.chat.id)
 
